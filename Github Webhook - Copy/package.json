@@ -1,0 +1,13 @@
+{
+  "name": "Github_Webhook_new",
+  "version": "0.0.1",
+  "author": "Josh",
+  "dependencies": {
+    "express": "*",
+    "body-parser":"*",
+    "request":"*"
+  },
+  "scripts": {
+    "start": "node Server.js"
+  }
+}
