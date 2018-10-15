@@ -1,0 +1,1073 @@
+Last login: Tue Oct  9 15:31:03 on ttys001
+ZZZM50944046A:~ siddharthagupta$ cf login
+API endpoint: https://api.cf.eu10.hana.ondemand.com
+
+Email> joseph.sasikanth.reddy.byreddy@sap.com
+
+Password> 
+Authenticating...
+OK
+
+Select an org (or press enter to skip):
+1. I327885trial_trial
+2. SAP_Solution_Experience_SAP_Demo_Cloud_sdcplatformv2
+3. SAP_Solution_Experience_SDCPlatform
+
+Org> ^[[A
+
+                
+API endpoint:   https://api.cf.eu10.hana.ondemand.com (API version: 2.115.0)
+User:           joseph.sasikanth.reddy.byreddy@sap.com
+No org or space targeted, use 'cf target -o ORG -s SPACE'
+FAILED        not found
+ZZZM50944046A:~ siddharthagupta$ cf api
+api endpoint:   https://api.cf.eu10.hana.ondemand.com
+api version:    2.115.0
+ZZZM50944046A:~ siddharthagupta$ cf api api.cf.us10.hana.ondemand.com
+Setting api endpoint to api.cf.us10.hana.ondemand.com...
+OK
+
+api endpoint:   https://api.cf.us10.hana.ondemand.com
+api version:    2.115.0
+Not logged in. Use 'cf login' to log in.
+ZZZM50944046A:~ siddharthagupta$ cf login
+API endpoint: https://api.cf.us10.hana.ondemand.com
+
+Email> joseph.sasikanth.reddy.byreddy@sap.com
+
+Password> 
+Authenticating...
+OK
+
+Targeted org SAP CP CS_Customer Success Account
+
+Targeted space SAP CP Apps
+
+
+                
+API endpoint:   https://api.cf.us10.hana.ondemand.com (API version: 2.115.0)
+User:           joseph.sasikanth.reddy.byreddy@sap.com
+Org:            SAP CP CS_Customer Success Account
+Space:          SAP CP Apps
+ZZZM50944046A:~ siddharthagupta$ cf saml
+'saml' is not a registered command. See 'cf help -a'
+
+Did you mean?
+      sapml
+ZZZM50944046A:~ siddharthagupta$ cf sapml
+A command-line interface for interacting with the SAP Leonardo Machine Learning foundation
+
+Usage:
+  sapml [command]
+
+Available Commands:
+  config      Configure CLI settings
+  fs          Interact with your remote filesystem
+  help        Help about any command
+  job         Manage the training jobs
+  model       Interact with models
+  retraining  Retraining Service
+
+Flags:
+      --debug      Enable debug output
+  -h, --help       Display CF help message
+      --insecure   Disable SSL certificate verification
+
+Use "sapml [command] --help" for more information about a command.
+ZZZM50944046A:~ siddharthagupta$ cf sapml config get
+
+  Key                         Value          
+  auth_server                                
+  job_api                                    
+  ml_foundation_service_name  ml-foundation  
+  retraining_api                             
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set auth_server https://sapcpcs.authentication.us10.hana.ondemand.com/oauth/token
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.prod.us-east-1.aws.ml.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set retraining_api https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining
+ZZZM50944046A:~ siddharthagupta$ cf sapml config get
+
+  Key                         Value                                                                                          
+  job_api                     https://training.prod.us-east-1.aws.ml.hana.ondemand.com                                       
+  ml_foundation_service_name  ml-foundation                                                                                  
+  retraining_api              https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining  
+  auth_server                 https://sapcpcs.authentication.us10.hana.ondemand.com/oauth/token                              
+ZZZM50944046A:~ siddharthagupta$ cf sapml config get
+
+  Key                         Value                                                                                          
+  auth_server                 https://sapcpcs.authentication.us10.hana.ondemand.com/oauth/token                              
+  job_api                     https://training.prod.us-east-1.aws.ml.hana.ondemand.com                                       
+  ml_foundation_service_name  ml-foundation                                                                                  
+  retraining_api              https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining  
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Attempting automatic login using cloud foundry service "ml-foundation" ...
+Login success in service "ml-foundation".
+Initialization finished. (status=Error) This server does not support the training service v1 API. If you are using the cf sapml plugin, please update to the latest version. 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.prod.us-east-1.aws.ml.hana.ondemand.com/v1/storage/endpoint
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) This server does not support the training service v1 API. If you are using the cf sapml plugin, please update to the latest version. 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.prod.us-east-1.aws.ml.hana.ondemand.com/v2/storage/endpoint
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) This server does not support the training service v1 API. If you are using the cf sapml plugin, please update to the latest version. 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.prod.us-east-1.aws.ml.hana.ondemand.com/api/v2/storage/endpoint
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) This server does not support the training service v1 API. If you are using the cf sapml plugin, please update to the latest version. 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.eu-central-1.aws.ml.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set retraining_api https://mlpretraining-api.cfapps.eu10.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) Signature verification failed
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set auth_server https://sapcpcs.authentication.us10.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) Signature verification failed
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set auth_server https://sapcpcs.authentication.us10.hana.ondemand.com/oauth/token
+ZZZM50944046A:~ siddharthagupta$ 
+ZZZM50944046A:~ siddharthagupta$ 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set job_api https://training.prod.us-east-1.aws.ml.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set retraining_api https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining
+ZZZM50944046A:~ siddharthagupta$ 
+ZZZM50944046A:~ siddharthagupta$ cf sapml config get
+
+  Key                         Value                                                                                          
+  job_api                     https://training.prod.us-east-1.aws.ml.hana.ondemand.com                                       
+  ml_foundation_service_name  ml-foundation                                                                                  
+  retraining_api              https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining  
+  model_repo_api              https://mlfproduction-model-api.cfapps.us10.hana.ondemand.com                                  
+  deployment_api              https://mlfproduction-deployment-api.cfapps.us10.hana.ondemand.com                             
+  auth_server                 https://sapcpcs.authentication.us10.hana.ondemand.com/oauth/token                              
+ZZZM50944046A:~ siddharthagupta$ cf sapml config set auth_server https://sapcpcs.authentication.us10.hana.ondemand.com
+ZZZM50944046A:~ siddharthagupta$ cf sapml config get
+
+  Key                         Value                                                                                          
+  retraining_api              https://mlfproduction-retrain-image-api.cfapps.us10.hana.ondemand.com/api/v2/image/retraining  
+  model_repo_api              https://mlfproduction-model-api.cfapps.us10.hana.ondemand.com                                  
+  deployment_api              https://mlfproduction-deployment-api.cfapps.us10.hana.ondemand.com                             
+  auth_server                 https://sapcpcs.authentication.us10.hana.ondemand.com                                          
+  job_api                     https://training.prod.us-east-1.aws.ml.hana.ondemand.com                                       
+  ml_foundation_service_name  ml-foundation                                                                                  
+ZZZM50944046A:~ siddharthagupta$ cf sapml fs init
+Initialization finished. (status=Error) This server does not support the training service v1 API. If you are using the cf sapml plugin, please update to the latest version. 
+ZZZM50944046A:~ siddharthagupta$ # uninstall SAPML plugin
+ZZZM50944046A:~ siddharthagupta$ cf uninstall-plugin SAPML
+Uninstalling plugin SAPML...
+OK
+Plugin SAPML 0.2.96 successfully uninstalled.
+ZZZM50944046A:~ siddharthagupta$ 
+ZZZM50944046A:~ siddharthagupta$ # remove cache folder
+ZZZM50944046A:~ siddharthagupta$ rm -Rf ~/.cf/.sapmlcli
+ZZZM50944046A:~ siddharthagupta$ cf sapml
+'sapml' is not a registered command. See 'cf help -a'
+ZZZM50944046A:~ siddharthagupta$ # remove cache folder
+ZZZM50944046A:~ siddharthagupta$ rm -Rf ~/.cf/.sapmlcli
+ZZZM50944046A:~ siddharthagupta$ rm -Rf ~/.cf/sapmlcli
+ZZZM50944046A:~ siddharthagupta$ rm -Rf ~/.cf/.sapmlcli
+ZZZM50944046A:~ siddharthagupta$ cd downloads
+ZZZM50944046A:downloads siddharthagupta$ cf install-plugin sapmlcli.xsuaa_login.darwinamd64-0.2.211-20180924.093003-1
+Searching CF-Community for plugin sapmlcli.xsuaa_login.darwinamd64-0.2.211-20180924.093003-1...
+Plugin sapmlcli.xsuaa_login.darwinamd64-0.2.211-20180924.093003-1 not found on disk or in any registered repo.
+Use 'cf repo-plugins' to list plugins available in the repos.
+FAILED
+ZZZM50944046A:downloads siddharthagupta$ cf install-plugin sapmlcli.xsuaa_login.darwinamd64-0.2.211-20180924.093003-1.bin
+Attention: Plugins are binaries written by potentially untrusted authors.
+Install and use plugins at your own risk.
+Do you want to install the plugin sapmlcli.xsuaa_login.darwinamd64-0.2.211-20180
+924.093003-1.bin? [yN]: y
+Installing plugin SAPML...
+OK
+Plugin SAPML 0.2.211 successfully installed.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs init
+Attempting automatic login using Cloud Foundry service "ml-foundation" ...
+Please select your service plan:
+
+1. standard
+2. internal
+
+Enter a value: 1
+
+Successfully logged in using "ml-foundation".
+Initializing. Please wait...   
+Initialization finished successfully.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs put dataset_pole fareast_data
+ 10.89 MiB / 10.89 MiB [==============================] 100.00% 257.38 KiB/s 43s
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast_data/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list fareast_data/
+fareast_data/test/
+fareast_data/training/
+fareast_data/validation/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image dataset.json
+File does not exist.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image /Users/siddharthagupta/Downloads/dataset.json
+File does not exist.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image "dataset.json"
+File does not exist.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image dataset.json
+invalid character '\\' looking for beginning of object key string
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image package.json
+invalid character 'â' looking for beginning of object key string
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image package.json
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image datasets.json
+Job submitted successfully with id "fareast-training-2018-10-09t1121z419498".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs getfareast-training-2018-10-09t1121z419498
+Interact with training file system
+
+The SAP Leonardo Machine Learning foundation provides a remote file system to which
+the training, testing, and validation data can be uploaded and trained upon.
+
+The training file system configuration needs to be fetched for the current
+instance of the SAP Leonardo Machine Learning foundation. In this process, the training
+file system will also be provisioned, in case it has not already. To initialize the training 
+file system, please execute 'cf sapml fs init'.
+
+The training file system can be managed via the following sub-commands:
+ * init
+ * put
+ * get
+ * delete
+ * list
+ * config
+
+The training file system is exposed through an Amazon S3 compliant API, whose endpoint
+and credentials can get acquired by executing 'cf sapml fs config'. With these 
+credentials, any Amazon S3 compatible tool can be used to interact with the training file system.
+
+All files and directories are stored in the 'data' bucket.
+
+For more information about the sub-commands use cf sapml help config <sub-command> 
+
+Examples:
+  # Initialize training file system
+  cf sapml fs init
+
+  # List top level files and directories
+  cf sapml fs list
+
+  # Upload file.txt to sample.txt on the training file system
+  cf sapml fs put file.txt sample.txt
+
+  # Download sample.txt from the training file system
+  # to the local file file.txt
+  cf sapml fs get sample.txt file.txt
+
+  # Delete sample.txt from the training file system
+  cf sapml fs delete sample.txt
+
+  # Get training file system endpoint and access credentials
+  cf sapml fs config
+
+Usage:
+  cf sapml fs [command]
+
+Available Commands:
+  config      Show configuration parameters for file system access
+  delete      Delete files or directories
+  get         Download files for directories
+  init        Initialize remote file system
+  list        List files and directories
+  put         Upload files and directories
+
+Flags:
+  -h, --help   Display Cloud Foundry help.
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help fs [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs get fareast-training-2018-10-09t1121z419498
+Error: Expected argument "LOCAL_PATH" not found.
+Usage:
+  cf sapml fs get REMOTE_PATH LOCAL_PATH [flags]
+
+Flags:
+  -h, --help   Display Cloud Foundry help.
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Expected argument "LOCAL_PATH" not found.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job -m fareast-training-2018-10-09t1121z419498
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job -m fareast-training-2018-10-09t1121z419498
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml job status
+Unexpected Error: "Request does not contain required scope".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml job status
+Unexpected Error: "Request does not contain required scope".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml job status fareast-training-2018-10-09t1121z419498
+Unexpected Error: "Request does not contain required scope".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image config.json
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job -m image
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+No jobs found.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job -m fareast-training
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining models
+Error: Flag "-m" or "--mode" is required
+Usage:
+  cf sapml retraining models [flags]
+
+Flags:
+  -h, --help               Display Cloud Foundry help.
+  -n, --modelName string   Model name.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Flag "-m" or "--mode" is required
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining models -m image
+
+  NAME      VERSION  UPDATED AT                    CREATED AT                    CHECKSUM  
+  dsmodel   1        2018-06-19T12:22:17.930+0000  2018-06-19T12:22:17.930+0000            
+  model_1   1        2018-08-03T03:57:39.455+0000  2018-08-03T03:52:43.204+0000            
+  my_model  1        2018-06-08T09:29:39.882+0000  2018-06-08T09:29:39.882+0000            
+  MLF_1     1        2018-08-03T09:21:22.496+0000  2018-08-03T09:19:08.389+0000            
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image datasets.json
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image datasets.json
+No jobs found.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image datasets.json
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image datasets.json
+
+
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ 
+ZZZM50944046A:downloads siddharthagupta$ 
+ZZZM50944046A:downloads siddharthagupta$ cf -1
+Incorrect Usage: unknown flag `1'
+
+cf version 6.34.1+bbdf81482.2018-01-17, Cloud Foundry command line tool
+Usage: cf [global options] command [arguments...] [command options]
+
+Before getting started:
+  config    login,l      target,t
+  help,h    logout,lo    
+
+Application lifecycle:
+  apps,a        run-task,rt    events
+  push,p        logs           set-env,se
+  start,st      ssh            create-app-manifest
+  stop,sp       app            
+  restart,rs    env,e          
+  restage,rg    scale          
+
+Services integration:
+  marketplace,m        create-user-provided-service,cups
+  services,s           update-user-provided-service,uups
+  create-service,cs    create-service-key,csk
+  update-service       delete-service-key,dsk
+  delete-service,ds    service-keys,sk
+  service              service-key
+  bind-service,bs      bind-route-service,brs
+  unbind-service,us    unbind-route-service,urs
+
+Route and domain management:
+  routes,r        delete-route    create-domain
+  domains         map-route       
+  create-route    unmap-route     
+
+Space management:
+  spaces         create-space    set-space-role
+  space-users    delete-space    unset-space-role
+
+Org management:
+  orgs,o       set-org-role
+  org-users    unset-org-role
+
+CLI plugin management:
+  plugins           add-plugin-repo      repo-plugins
+  install-plugin    list-plugin-repos    
+
+Commands offered by installed plugins:
+  sapml        
+
+Global options:
+  --help, -h                         Show help
+  -v                                 Print API request diagnostics to stdout
+
+Use 'cf help -a' to see all commands.
+ZZZM50944046A:downloads siddharthagupta$ cf -a
+Incorrect Usage: unknown flag `a'
+
+cf version 6.34.1+bbdf81482.2018-01-17, Cloud Foundry command line tool
+Usage: cf [global options] command [arguments...] [command options]
+
+Before getting started:
+  config    login,l      target,t
+  help,h    logout,lo    
+
+Application lifecycle:
+  apps,a        run-task,rt    events
+  push,p        logs           set-env,se
+  start,st      ssh            create-app-manifest
+  stop,sp       app            
+  restart,rs    env,e          
+  restage,rg    scale          
+
+Services integration:
+  marketplace,m        create-user-provided-service,cups
+  services,s           update-user-provided-service,uups
+  create-service,cs    create-service-key,csk
+  update-service       delete-service-key,dsk
+  delete-service,ds    service-keys,sk
+  service              service-key
+  bind-service,bs      bind-route-service,brs
+  unbind-service,us    unbind-route-service,urs
+
+Route and domain management:
+  routes,r        delete-route    create-domain
+  domains         map-route       
+  create-route    unmap-route     
+
+Space management:
+  spaces         create-space    set-space-role
+  space-users    delete-space    unset-space-role
+
+Org management:
+  orgs,o       set-org-role
+  org-users    unset-org-role
+
+CLI plugin management:
+  plugins           add-plugin-repo      repo-plugins
+  install-plugin    list-plugin-repos    
+
+Commands offered by installed plugins:
+  sapml        
+
+Global options:
+  --help, -h                         Show help
+  -v                                 Print API request diagnostics to stdout
+
+Use 'cf help -a' to see all commands.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast-training-2018-10-09t1121z419498/
+fareast_data/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list fareast_data/
+fareast_data/test/
+fareast_data/training/
+fareast_data/validation/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list fareast_data/training
+fareast_data/training/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list fareast_data/training/
+fareast_data/training/BirdNest/
+fareast_data/training/Broken/
+fareast_data/training/Fire/
+fareast_data/training/Wired/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image retrain.json
+Error in backend: Something went wrong. Please contact your system administrator
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image retrain.json
+Job submitted successfully with id "fareast-training-2018-10-09t1214z154052".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs
+Error: Flag "-m" or "--mode" is required
+Usage:
+  cf sapml retraining jobs [flags]
+
+Flags:
+  -h, --help           Display Cloud Foundry help.
+  -j, --jobId string   Job id.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Flag "-m" or "--mode" is required
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining -m  jobs
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast-training-2018-10-09t1121z419498/
+fareast_data/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retaining model_deployments
+Error: unknown command "retaining" for "sapml"
+
+Did you mean this?
+	retraining
+
+Run 'sapml help' for usage.
+unknown command "retaining" for "sapml"
+
+Did you mean this?
+	retraining
+
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deployments
+Error: Flag "-m" or "--mode" is required
+Usage:
+  cf sapml retraining model_deployments [flags]
+
+Flags:
+  -d, --deploymentId string   Deployment Id.
+  -h, --help                  Display Cloud Foundry help.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Flag "-m" or "--mode" is required
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining
+The Retrain Service provides an easy way to 'fine-tune' a generic machine learning model to a custom use case.
+You can use this service without being a Machine Learning Expert. The generic or base model is provided by SAP.
+The Retrain Service adapts the generic model to a specific model using the provided training data by the user.
+Thus, classification results for the specific data-set are greatly improved compared to the generic model.
+
+Submit, delete or list retraining jobs. List or delete retrained model from model repository. 
+Deploy, undeploy or list deployed retrained models.
+
+Retrain service can be managed through following sub-commands:
+  * job_submit
+  * job_delete
+  * jobs
+  * models
+  * model_delete
+  * model_deploy
+  * model_undeploy
+  * model_deployments
+
+For more information about the sub-commands use cf sapml help retraining <sub-command>
+
+Examples:
+  # Submit a retraining job
+  cf sapml retraining job_submit my_retrain.json
+
+  # Delete retraining job
+  cf sapml retraining job_delete dataset-20news-2017-10-11t1034z
+
+  # List all submitted retraining jobs
+  cf sapml retraining jobs
+
+  # List all retrained models
+  cf sapml retraining models
+
+  # Delete the retrained model
+  cf sapml retraining model_delete my_model 1
+
+  # Deploy retrained model
+  cf sapml retraining model_deploy my_model 1
+
+  # Undeploy the deployed retrained-model
+  cf sapml retraining model_undeploy 22174f4c-6122-4a04-bbe5-39567066013a
+
+  # List all deployed retrained-models
+  cf sapml retraining model_deployments
+
+Usage:
+  cf sapml retraining [command]
+
+Available Commands:
+  job_delete        Delete retraining job
+  job_submit        Submit retraining job
+  jobs              List retraining jobs
+  model_delete      Delete retrained model
+  model_deploy      Deploy a retrained model
+  model_deployments List deployments of retrained models
+  model_undeploy    Undeploy a retrained model
+  models            List models for retrained model
+
+Flags:
+  -h, --help          Display Cloud Foundry help.
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Use "cf sapml help retraining [command]" for more information about a command.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs
+Error: Flag "-m" or "--mode" is required
+Usage:
+  cf sapml retraining jobs [flags]
+
+Flags:
+  -h, --help           Display Cloud Foundry help.
+  -j, --jobId string   Job id.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Flag "-m" or "--mode" is required
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m
+Error: flag needs an argument: 'm' in -m
+Usage:
+  cf sapml retraining jobs [flags]
+
+Flags:
+  -h, --help           Display Cloud Foundry help.
+  -j, --jobId string   Job id.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+flag needs an argument: 'm' in -m
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  RUNNING  2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  0001-01-01T00:00:00.000Z  
+  fareast-training-2018-10-09t1214z154052  PENDING  2018-10-09T12:14:35.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  FAILED   2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  2018-10-09T12:23:05.000Z  
+  fareast-training-2018-10-09t1214z154052  RUNNING  2018-10-09T12:14:35.000Z  2018-10-09T12:23:19.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  FAILED   2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  2018-10-09T12:23:05.000Z  
+  fareast-training-2018-10-09t1214z154052  RUNNING  2018-10-09T12:14:35.000Z  2018-10-09T12:23:19.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  FAILED   2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  2018-10-09T12:23:05.000Z  
+  fareast-training-2018-10-09t1214z154052  RUNNING  2018-10-09T12:14:35.000Z  2018-10-09T12:23:19.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS     SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  FAILED     2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  2018-10-09T12:23:05.000Z  
+  fareast-training-2018-10-09t1214z154052  SUCCEEDED  2018-10-09T12:14:35.000Z  2018-10-09T12:23:19.000Z  2018-10-09T12:24:17.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast-training-2018-10-09t1121z419498/
+fareast-training-2018-10-09t1214z154052/
+fareast-training-2018-10-09t1219z448421/
+fareast_data/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs get fareast-training-2018-10-09t1214z154052/
+Error: Expected argument "LOCAL_PATH" not found.
+Usage:
+  cf sapml fs get REMOTE_PATH LOCAL_PATH [flags]
+
+Flags:
+  -h, --help   Display Cloud Foundry help.
+
+Global Flags:
+  -i, --insecure   Disable SSL certificate verification. Not recommended!
+  -v, --verbose    Enable verbose output.
+
+Expected argument "LOCAL_PATH" not found.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                       STATUS     SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-training-2018-10-09t1219z448421  FAILED     2018-10-09T12:19:25.000Z  2018-10-09T12:22:00.000Z  2018-10-09T12:23:05.000Z  
+  fareast-training-2018-10-09t1214z154052  SUCCEEDED  2018-10-09T12:14:35.000Z  2018-10-09T12:23:19.000Z  2018-10-09T12:24:17.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs get fareast-training-2018-10-09t1214z154052/retraining.log my_retraining.log
+Calculating download size...
+ 17.57 KiB / 17.57 KiB [================================] 100.00% 38.01 KiB/s 0s
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs get fareast-training-2018-10-09t1219z448421/retraining.log my_retraining1.log
+Calculating download size...
+ 25.21 KiB / 25.21 KiB [================================] 100.00% 24.56 KiB/s 1s
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deploy -m image fareastmodel 1
+Deployment request submitted with id "ms-62648c2a-d960-4b76-9fd2-1971bdf0a394".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deploy -m image
+Error: Expected argument "MODEL_NAME" not found.
+Usage:
+  cf sapml retraining model_deploy MODEL_NAME [MODEL_VERSION] [JOB_ID] [flags]
+
+Flags:
+  -h, --help   Display Cloud Foundry help.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Expected argument "MODEL_NAME" not found.
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deployments -m image
+
+  ID                                       MODEL NAME    MODEL VERSION  HOST                                                                                       PORT  STATUS     DESCRIPTION                              
+  ms-ec89ea95-41b6-46da-af74-00d52299c2ef  dsmodel       1              grpc-ms-ec89ea95-41b6-46da-af74-00d52299c2ef.byom.prod.us-east-1.aws.ml.hana.ondemand.com  443   SUCCEEDED  Model is deployed and ready to           
+                                                                                                                                                                                    serve.                                   
+  ms-a0205dda-af33-4352-942a-98e636072cab  model_1       1                                                                                                               FAILED     Model with namespace                     
+                                                                                                                                                                                    '3a410041-28fb-4851-b488-844717af24d4',  
+                                                                                                                                                                                    modelName 'model_1', and modelVersion    
+                                                                                                                                                                                    '1' should contain at least one *.pb     
+                                                                                                                                                                                    file in top level of unzipped folder.    
+  ms-089ba2f6-e239-4f09-bbab-7ece23f589e8  MLF_1         1                                                                                                               FAILED     Model with namespace                     
+                                                                                                                                                                                    '3a410041-28fb-4851-b488-844717af24d4',  
+                                                                                                                                                                                    modelName 'MLF_1', and modelVersion '1'  
+                                                                                                                                                                                    should contain at least one *.pb file    
+                                                                                                                                                                                    in top level of unzipped folder.         
+  ms-62648c2a-d960-4b76-9fd2-1971bdf0a394  fareastmodel  1              ms-62648c2a-d960-4b76-9fd2-1971bdf0a394.byom.prod.us-east-1.aws.ml.hana.ondemand.com       443   SUCCEEDED  Model is deployed and ready to serve.    
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+No jobs found.
+ZZZM50944046A:downloads siddharthagupta$ 

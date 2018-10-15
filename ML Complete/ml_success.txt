@@ -1,0 +1,118 @@
+Last login: Tue Oct  9 15:37:28 on ttys001
+ZZZM50944046A:~ siddharthagupta$ cd downloads
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs put fareastnewdataset fareastoriginaldataset
+ 34.84 MiB / 34.84 MiB [==============================] 100.00% 687.28 KiB/s 51s
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast-training-2018-10-09t1121z419498/
+fareast-training-2018-10-09t1214z154052/
+fareast-training-2018-10-09t1219z448421/
+fareast_data/
+fareastoriginaldataset/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining job_submit -m image new_retrain.json
+Attempting automatic login using Cloud Foundry service "ml-foundation" ...
+Please select your service plan:
+
+1. standard
+2. internal
+
+Enter a value: 1
+
+Successfully logged in using "ml-foundation".
+Job submitted successfully with id "fareast-original-training-2018-10-15t1101z526711".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs
+Error: Flag "-m" or "--mode" is required
+Usage:
+  cf sapml retraining jobs [flags]
+
+Flags:
+  -h, --help           Display Cloud Foundry help.
+  -j, --jobId string   Job id.
+
+Global Flags:
+  -i, --insecure      Disable SSL certificate verification. Not recommended!
+  -m, --mode string   Retrain mode, 'image', 'text' or 'od' (required).
+  -v, --verbose       Enable verbose output.
+
+Flag "-m" or "--mode" is required
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS   SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  PENDING  2018-10-15T11:01:21.000Z  0001-01-01T00:00:00.000Z  0001-01-01T00:00:00.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+
+  ID                                                STATUS     SUBMISSION TIME           START TIME                FINISH TIME               
+  fareast-original-training-2018-10-15t1101z526711  SUCCEEDED  2018-10-15T11:01:21.000Z  2018-10-15T11:08:31.000Z  2018-10-15T11:09:26.000Z  
+ZZZM50944046A:downloads siddharthagupta$ cf sapml fs list
+BOC/
+MLF training/
+boc-2018-08-03t0347z042338/
+dspole-2018-06-13t0914z734092/
+dspole-2018-06-19t1212z064866/
+dspole-2018-06-19t1221z685204/
+dspole/
+fareast-original-training-2018-10-15t1101z526711/
+fareast-training-2018-10-09t1121z419498/
+fareast-training-2018-10-09t1214z154052/
+fareast-training-2018-10-09t1219z448421/
+fareast_data/
+fareastoriginaldataset/
+jobs/
+mlftraining-2018-08-03t0912z797383/
+pole/
+rimages/
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deploy -m image fareastoriginalmodel 1
+Deployment request submitted with id "ms-6ae83e2e-dd08-4c39-86e2-92ee0b5f02d6".
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining model_deployments -m image
+
+  ID                                       MODEL NAME            MODEL VERSION  HOST                                                                                  PORT  STATUS     DESCRIPTION                              
+  ms-a0205dda-af33-4352-942a-98e636072cab  model_1               1                                                                                                          FAILED     Model with namespace                     
+                                                                                                                                                                                       '3a410041-28fb-4851-b488-844717af24d4',  
+                                                                                                                                                                                       modelName 'model_1', and modelVersion    
+                                                                                                                                                                                       '1' should contain at least one *.pb     
+                                                                                                                                                                                       file in top level of unzipped folder.    
+  ms-089ba2f6-e239-4f09-bbab-7ece23f589e8  MLF_1                 1                                                                                                          FAILED     Model with namespace                     
+                                                                                                                                                                                       '3a410041-28fb-4851-b488-844717af24d4',  
+                                                                                                                                                                                       modelName 'MLF_1', and modelVersion '1'  
+                                                                                                                                                                                       should contain at least one *.pb file    
+                                                                                                                                                                                       in top level of unzipped folder.         
+  ms-62648c2a-d960-4b76-9fd2-1971bdf0a394  fareastmodel          1              ms-62648c2a-d960-4b76-9fd2-1971bdf0a394.byom.prod.us-east-1.aws.ml.hana.ondemand.com  443   SUCCEEDED  Model is deployed and ready to serve.    
+  ms-085eda0c-cc15-4898-a8f8-5c24a5cf3cf3  dsmodel               1              ms-085eda0c-cc15-4898-a8f8-5c24a5cf3cf3.byom.prod.us-east-1.aws.ml.hana.ondemand.com  443   SUCCEEDED  Model is deployed and ready to serve.    
+  ms-6ae83e2e-dd08-4c39-86e2-92ee0b5f02d6  fareastoriginalmodel  1              ms-6ae83e2e-dd08-4c39-86e2-92ee0b5f02d6.byom.prod.us-east-1.aws.ml.hana.ondemand.com  443   SUCCEEDED  Model is deployed and ready to serve.    
+ZZZM50944046A:downloads siddharthagupta$ cf sapml retraining jobs -m image
+No jobs found.
+ZZZM50944046A:downloads siddharthagupta$ 

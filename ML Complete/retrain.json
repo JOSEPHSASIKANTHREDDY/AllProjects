@@ -1,0 +1,13 @@
+ {
+  "jobName": "fareast-training",
+  "dataset": "fareast_data",
+  "modelName": "fareastmodel",
+  "batchSize": 64,
+  "learningRate": 0.001,
+  "maxEpochs": 150,
+  "maxUnimprovedEpochs": 15,
+  "completionTime": 24,
+  "memory": 8192,
+  "generateTfSummaries": true,
+  "retrainingDepth": 1
+}
